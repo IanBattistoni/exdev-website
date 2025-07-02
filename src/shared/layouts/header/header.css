@@ -1,0 +1,28 @@
+.header{
+    
+    background-color: rgb(228, 222, 222);
+    height: 20px;
+    padding: 10px;
+    
+    text-align: center;
+}
+
+.nav{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 4dvw;
+    
+    
+}
+
+a{
+    font-weight: bold;
+    text-decoration: none; 
+    color: rgb(66, 60, 60);  
+    text-wrap: nowrap;
+  }
+
+    .nav a:hover{
+    color: rgb(160, 110, 200); 
+  }

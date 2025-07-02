@@ -1,10 +1,16 @@
 .header{
     
-    background-color: rgb(228, 222, 222);
-    height: 20px;
+    background-color: none;
+    height: 40px;
     padding: 10px;
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    justify-self: center;
     
-    text-align: center;
+    
 }
 
 .nav{
@@ -12,6 +18,8 @@
     justify-content: center; 
     align-items: center; 
     gap: 4dvw;
+    padding-right: 4rem;
+    
     
     
 }
@@ -19,10 +27,28 @@
 a{
     font-weight: bold;
     text-decoration: none; 
-    color: rgb(66, 60, 60);  
+    color: #DDDDDD;
     text-wrap: nowrap;
   }
 
     .nav a:hover{
-    color: rgb(160, 110, 200); 
+    color: #65428A; 
   }
+.logo-container{
+  padding-left: 4rem;
+}
+.exdev-logo {
+  
+  height: 40px;
+  width: auto;
+}
+
+
+@media (max-width: 264px) {
+  .nav{
+    padding-right: 1rem;
+  }
+  .logo-container{
+    padding-left: 1rem;
+  }
+}

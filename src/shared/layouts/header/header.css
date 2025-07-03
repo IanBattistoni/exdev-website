@@ -19,9 +19,6 @@
     align-items: center; 
     gap: 4dvw;
     padding-right: 4rem;
-    
-    
-    
 }
 
 a{
@@ -43,8 +40,17 @@ a{
   width: auto;
 }
 
+@media (max-width: 400px) {
+  
+  .logo-container{
+    padding-left: 2rem;
+  }
+  .nav{
+    padding-right: 2rem;
+  }
+}
 
-@media (max-width: 264px) {
+@media (max-width: 320px) {
   .nav{
     padding-right: 1rem;
   }

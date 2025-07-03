@@ -9,7 +9,7 @@ function Header(){
             <div className="logo-container">
                 <a href="/">
                 <picture>
-                    <source srcSet={ExdevSoloLogo} media="(max-width: 364px)" />
+                    <source srcSet={ExdevSoloLogo} media="(max-width: 400px)" />
                     <img src={ExdevLogo} alt="Logo Exdev" className="exdev-logo" />
                 </picture>
                 </a>

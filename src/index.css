@@ -5,9 +5,41 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #0C030E;
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.app {
+  max-width: 1440px; 
+  width: 100%; 
+  margin: 0 auto; 
+  
+}
+
+
+ul{
+  color: #DDDDDD;
+}
+span{
+  color: #DDDDDD;
+}
+p{
+  color: #DDDDDD;
+  
+}
+h2{
+  color: #DDDDDD;
+}
+h3 { 
+  margin: 0;
+  color: #DDDDDD;
+}
+h4{
+  color: #DDDDDD;
+  margin: 0;
 }

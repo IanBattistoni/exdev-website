@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ExDev",
+  "name": "Club de Desarrollo Experimental ExDev",
+  "description": "Club de Desarrollo Experimental ExDev, UTEM. Un espacio donde la innovación, la tecnología y la creatividad se unen para crear proyectos reales.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +9,18 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "exdev-solologo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "exdev-solologo.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#0C030E",
+  "background_color": "#0C030E"
 }

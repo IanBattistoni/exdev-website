@@ -1,3 +1,14 @@
+:root{
+  --bg-color: #0C030E;
+  --text-color: #DDDDDD;
+  --link-hover: #65428A;
+}
+body.light {
+  --bg-color: #F0F9FF;
+  --text-color: #111111;
+  --link-hover: #0077cc;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,7 +16,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #0C030E;
+  background-color: var(--bg-color);
+  
   overflow-x: hidden;
 }
 
@@ -21,25 +33,23 @@ code {
   
 }
 
+.nav a:hover {
+  color: var(--link-hover);
+}
 
-ul{
-  color: #DDDDDD;
+a{
+  color: var(--text-color);
 }
-span{
-  color: #DDDDDD;
+
+h2, p, span, ul {
+  color: var(--text-color);
 }
-p{
-  color: #DDDDDD;
-  
-}
-h2{
-  color: #DDDDDD;
-}
+
 h3 { 
   margin: 0;
-  color: #DDDDDD;
+  color: var(--text-color);
 }
 h4{
-  color: #DDDDDD;
+  color: var(--text-color);
   margin: 0;
 }

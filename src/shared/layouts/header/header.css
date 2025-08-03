@@ -24,13 +24,10 @@
 a{
     font-weight: bold;
     text-decoration: none; 
-    color: #DDDDDD;
     text-wrap: nowrap;
   }
 
-    .nav a:hover{
-    color: #65428A; 
-  }
+    
 .logo-container{
   padding-left: 4rem;
 }
@@ -39,6 +36,59 @@ a{
   height: 40px;
   width: auto;
 }
+.theme-switch {
+  background-color: #999;
+  border: 1px solid rgba(255, 255, 255, 0.251);
+  box-sizing: border-box;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 60px;
+  height: 28px;
+  padding: 0 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-image: url('/src/assets/img/moon_night.webp');
+  background-size: cover;
+  
+  
+}
+
+body.light .theme-switch {
+  background-image: url('/src/assets/img/sun_light.webp');
+  border: 1px solid rgba(0, 0, 0, 0.373);
+}
+.theme-switch img { 
+object-fit: cover;
+height: 10px;
+}
+.theme-switch .moon-icon,
+.theme-switch .sun-icon {
+  font-size: 14px;
+  color: #fff;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.theme-switch .switch-thumb {
+  position: absolute;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background-color: #DDDDDD;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+body.light .theme-switch .switch-thumb{
+  background-color: #f1e98e;
+}
+.theme-switch .switch-thumb.active {
+  transform: translateX(32px); 
+}
+
 
 @media (max-width: 400px) {
   

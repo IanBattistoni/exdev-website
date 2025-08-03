@@ -11,12 +11,12 @@ function Header(){
         return localStorage.getItem('theme') || 'dark';
     } );
     useEffect(() => {
-        document.body.classList.toggle('light', theme == 'light');
+        document.body.classList.toggle('light', theme === 'light');
         localStorage.setItem('theme', theme);
     }, [theme]);
 
     const toggleTheme = () => {
-        setTheme(prev => (prev == 'dark' ? 'light': 'dark'));
+        setTheme(prev => (prev === 'dark' ? 'light': 'dark'));
     }
     return(
         <header className="header">

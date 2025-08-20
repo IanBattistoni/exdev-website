@@ -31,7 +31,7 @@ function Header(){
             <nav className="nav">
                 
                 <a href='/' title='Ir a inicio'>Inicio</a>
-                <a href='/about' title='Sobre nosotros'>Nostros</a>
+                <a href='/about' title='Sobre nosotros'>Nosotros</a>
                 <button onClick={toggleTheme} className="theme-switch" aria-label="Cambiar tema">
                     <span className="moon-icon"></span>
                     <span className={`switch-thumb ${theme === 'light' ? 'active' : ''}`}></span>

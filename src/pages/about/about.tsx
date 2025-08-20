@@ -2,6 +2,7 @@ import './about.css';
 
 function About() {
     return(
+        
         <section className="about-page">
         <h1>Sobre nosotros</h1>
 

@@ -548,3 +548,10 @@ p[style*="color: red"] {
   }
 }
 
+/* ERROR MENSAJE*/
+body.light .error,
+body:not(.light) .error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}

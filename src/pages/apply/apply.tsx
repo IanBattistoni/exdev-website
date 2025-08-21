@@ -1,5 +1,8 @@
 import "./apply.css";
 import { useState, useRef } from "react";
+import Modal from "../Modal/Modal"; // sube un nivel y entra a la carpeta modal
+import { useEffect } from "react";   // si no lo tienes ya
+
 
 const preguntas = [
   {
@@ -14,9 +17,29 @@ const preguntas = [
   },
 ];
 
-
 function Apply() {
-        
+
+  const refs = {
+  nombre: useRef<HTMLInputElement>(null),
+  rut: useRef<HTMLInputElement>(null),
+  edad: useRef<HTMLInputElement>(null),
+  correo: useRef<HTMLInputElement>(null),
+  carrera: useRef<HTMLDivElement>(null),
+  anioIngreso: useRef<HTMLDivElement>(null),
+  anioMalla: useRef<HTMLDivElement>(null),
+  disponibilidad: useRef<HTMLDivElement>(null),
+  areas: useRef<HTMLDivElement>(null), // si es un bloque de checkboxes
+  ayudantia: useRef<HTMLTextAreaElement>(null), // si es un bloque de checkboxes
+  unirse: useRef<HTMLTextAreaElement>(null), // si es un bloque de checkboxes
+  proyectos: useRef<HTMLTextAreaElement>(null), // si es un bloque de checkboxes
+  redes: useRef<HTMLTextAreaElement>(null), // si es un bloque de checkboxes
+  nombresMas: useRef<HTMLTextAreaElement>(null), // si es un bloque de checkboxes
+  pitch: useRef<HTMLTextAreaElement>(null), // si es un bloque de checkboxes
+  apodo: useRef<HTMLTextAreaElement>(null), // si es un bloque de checkboxes
+  emojiAnimal: useRef<HTMLTextAreaElement>(null), // si es un bloque de checkboxes
+  momazo: useRef<HTMLTextAreaElement>(null), // si es un bloque de checkboxes
+};
+
   //Drop zone//
   const [files, setFiles] = useState<File[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -141,32 +164,129 @@ const handleRutChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   setRut(formatted);
 };
 
-//correo//
+// Manejo del input de correo
 const handleCorreoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   let valor = e.target.value.toLowerCase();
-  valor = valor.replace(/[^a-z.@]/g, ""); // solo letras, puntos y @
+
+  // Si hay más de 2 partes por @, conservar solo la primera y la segunda
+  const partes = valor.split("@");
+  if (partes.length > 2) {
+    valor = partes[0] + "@" + partes[1];
+  }
+
+  // Ahora separamos en antes y después del @ (si existe)
+  const tieneArroba = valor.indexOf("@") !== -1;
+  const [antesArroba, despuesArrobaRaw] = valor.split("@");
+
+  // Permitir letras, números y puntos en la parte local
+  let nuevaAntes = (antesArroba || "").replace(/[^a-z0-9.]/g, "");
+
+  // Evitar múltiples puntos consecutivos
+  nuevaAntes = nuevaAntes.replace(/\.{2,}/g, ".");
+
+  // Evitar punto al inicio
+  nuevaAntes = nuevaAntes.replace(/^\./, "");
+
+  // Procesar la parte después de @ (mantenerla vacía si el usuario solo escribió '@')
+  let nuevaDespues = "";
+  if (tieneArroba) {
+    // Si el usuario escribió '@' pero nada después, despuesArrobaRaw === "" (queremos conservar el @)
+    // Permitimos solo letras en el dominio (utem.cl)
+    nuevaDespues = (despuesArrobaRaw !== undefined) ? despuesArrobaRaw.replace(/[^a-z.]/g, "") : "";
+    // También limitar a una sola ocurrencia de "utem.cl" parcial no es necesario aquí; la validación final lo hará
+  }
+
+  // Reconstruir: si había @, mantenerlo aunque nuevaDespues sea ""
+  valor = nuevaAntes + (tieneArroba ? "@" + nuevaDespues : "");
+
   setCorreo(valor);
 };
 
-// Validar solo al enviar
+
+
+
+// Validar FUNCION//
 const handleSubmit = (e: React.FormEvent) => {
   e.preventDefault();
+  const nuevosErrores: {[key: string]: string} = {};
 
-  if (!/^[a-z.]+@utem\.cl$/.test(correo)) {
-    setErrorCorreo("El correo debe tener el formato usuario@utem.cl (solo letras y puntos antes del @)");
-    return;
+  // Nombre
+  if (!nombre.trim()) nuevosErrores["nombre"] = "Debes ingresar tu nombre";
+
+  // RUT
+  const rutRegex = /^\d{1,2}\.\d{3}\.\d{3}-[\dkK]$/;
+  if (!rut.trim()) {
+    nuevosErrores["rut"] = "Debes ingresar tu RUT";
+  } else if (!rutRegex.test(rut)) {
+    nuevosErrores["rut"] = "Formato inválido. Ejemplo: 20.123.456-7";
   }
 
-  setErrorCorreo("");
-  alert("Formulario enviado correctamente ✅");
+  // Edad
+const edadTrim = edad.trim();
+if (!edadTrim) {
+  nuevosErrores["edad"] = "Debes ingresar tu edad";
+} else {
+  const edadNum = parseInt(edadTrim, 10);
+
+  // Si quieres QUE SEA estrictamente mayor a 18 (es decir: 19,20,...)
+  if (isNaN(edadNum) || edadNum < 18) {
+    nuevosErrores["edad"] = "Debes ser mayor de 18 años";
+  }}
+
+// Correo UTEM válido: permite "nombre@utem.cl" o "nombre.apellido@utem.cl"
+const correoRegex = /^[a-z0-9]+(\.[a-z0-9]+)*@utem\.cl$/i;
+
+// Uso en handleSubmit
+if (!correo.trim()) {
+  nuevosErrores["correo"] = "Debes ingresar tu correo";
+} else if (!correoRegex.test(correo)) {
+  nuevosErrores["correo"] =
+    "Correo inválido. Ejemplo: juan.perez@utem.cl o jcortesa@utem.cl";
+}
+
+  // Selectores
+  if (!carrera) nuevosErrores["carrera"] = "Debes seleccionar tu carrera";
+  if (!anioIngreso) nuevosErrores["anioIngreso"] = "Debes seleccionar tu año de ingreso";
+  if (!anioMalla) nuevosErrores["anioMalla"] = "Debes seleccionar tu año que cursas";
+  if (!disponibilidad) nuevosErrores["disponibilidad"] = "Debes seleccionar tu disponibilidad";
+
+  // Áreas: exactamente 3
+  if (areasSeleccionadas.length !== 3) 
+    nuevosErrores["areas"] = "Debes seleccionar exactamente 3 áreas";
+
+  // Textareas
+  const textareas = ["ayudantia", "unirse", "proyectos", "redes", "nombresMas", "pitch", "emojiAnimal", "momazo"];
+  textareas.forEach(id => {
+    const valor = (document.getElementById(id) as HTMLTextAreaElement | null)?.value;
+    if (!valor || !valor.trim()) nuevosErrores[id] = "Este campo es obligatorio";
+  });
+
+  setErrores(nuevosErrores);
+  if (Object.keys(nuevosErrores).length > 0) {
+  const firstErrorKey = Object.keys(nuevosErrores)[0];
+  refs[firstErrorKey as keyof typeof refs]?.current?.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
+  return false;
+}
+
+  // Si no hay errores → abrir modal
+  const randomMedia = mediaFiles[Math.floor(Math.random() * mediaFiles.length)];
+  setSelectedMedia(randomMedia);
+  setIsModalOpen(true);
 };
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 const handleAreaChange = (area: string) => {
   let nuevas = [...areasSeleccionadas];
 
   if (nuevas.includes(area)) {
-    // Si ya estaba seleccionada, quitar
+    // Quitar si ya estaba seleccionada
     nuevas = nuevas.filter(a => a !== area);
 
     if (area === "Otro") {
@@ -174,25 +294,19 @@ const handleAreaChange = (area: string) => {
       setOtroTexto("");
     }
   } else {
-    // Si no estaba seleccionada, agregar
-    nuevas.push(area);
+    // Solo agregar si aún no hay 3 seleccionadas
+    if (nuevas.length < 3) {
+      nuevas.push(area);
 
-    // Si supera 3, quitar la primera seleccionada
-    if (nuevas.length > 3) {
-      const primera = nuevas.shift(); // quita la primera
-      if (primera === "Otro") {
-        setOtroChecked(false);
-        setOtroTexto("");
-      }
-    }
-
-    if (area === "Otro") {
-      setOtroChecked(true);
+      if (area === "Otro") setOtroChecked(true);
+    } else {
+      alert("Solo puedes seleccionar 3 áreas");
     }
   }
 
   setAreasSeleccionadas(nuevas);
 };
+
 
   // mas compañeros//
 const [nombresMas, setNombresMas] = useState("");
@@ -202,32 +316,6 @@ const handleNombresMasChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                              .replace(/\s{2,}/g, ' ');
   setNombresMas(valor);
 };
-
-
-//VALIDACION FORMULARIO//
-const validarFormulario = () => {
-  // Campos simples
-  if (!nombre.trim()) return { valido: false, campo: "nombre" };
-  if (!rut.trim()) return { valido: false, campo: "rut" };
-  if (!edad.trim()) return { valido: false, campo: "edad" };
-  if (!correo.trim()) return { valido: false, campo: "correo" };
-
-  // Botones selector
-  if (!carrera) return { valido: false, campo: "carrera" };
-  if (!anioIngreso) return { valido: false, campo: "anioIngreso" };
-  if (!anioMalla) return { valido: false, campo: "anioMalla" };
-  if (!disponibilidad) return { valido: false, campo: "disponibilidad" };
-
-  // Áreas de interés
-  if (areasSeleccionadas.length !== 3) {
-    return { valido: false, campo: "areas", mensaje: "Debes seleccionar exactamente 3 áreas" };
-  }
-
-  // Aquí puedes seguir validando textareas o archivos si quieres
-
-  return { valido: true };
-};
-
 
 
 // Estado para abrir/cerrar cada selector
@@ -303,6 +391,47 @@ const toggleDisponibilidad = () => setDisponibilidadOpen(!disponibilidadOpen);
   const toggleQuestion = (index: number) =>
     setOpenQuestionIndex(openQuestionIndex === index ? null : index);
 
+  //MODAL//
+  const [isModalOpen, setIsModalOpen] = useState(false);
+const [selectedMedia, setSelectedMedia] = useState<string>("");
+
+//ERRORES//
+const [errores, setErrores] = useState<{[key: string]: string}>({});
+
+
+// Medios (GIFs/WebM) ubicados en public/assets
+const mediaFiles = [
+  "/assets/gif/gif1.gif",
+  "/assets/gif/gif2.webm",
+  "/assets/gif/gif3.gif",
+  "/assets/gif/gif4.gif",
+  "/assets/gif/gif5.gif",
+];
+
+
+useEffect(() => {
+  if (isModalOpen) {
+    const timer = setTimeout(() => {
+      setIsModalOpen(false);
+      // Reiniciar campos si quieres
+      setNombre("");
+      setRut("");
+      setEdad("");
+      setCorreo("");
+      setCarrera("");
+      setAnioIngreso("");
+      setAnioMalla("");
+      setDisponibilidad("");
+      setAreasSeleccionadas([]);
+      setOtroChecked(false);
+      setOtroTexto("");
+    }, 300000); // 3 segundos
+    return () => clearTimeout(timer);
+  }
+}, [isModalOpen]);
+
+
+
   return (
     <>
 
@@ -315,38 +444,30 @@ const toggleDisponibilidad = () => setDisponibilidadOpen(!disponibilidadOpen);
       <p>¡Bienvenido/a al formulario de postulación ExDev! Queremos conocerte mejor para saber cómo puedes crecer con nosotros y cómo podemos trabajar juntos en proyectos increíbles. Este formulario no toma más de 5-7 minutos.</p>
     </div>
 
-          <form id="miFormulario">
+          <form id="miFormulario" onSubmit={handleSubmit}>
             {/* Campo 1 */}
             <label htmlFor="nombre">1. Nombre completo</label>
-            <input
-            type="text"
-            value={nombre}
-            onChange={handleNombreChange}
-            required
-            />
+            <input ref={refs.nombre} type="text" value={nombre} onChange={handleNombreChange} required/>
+            {errores["nombre"] && <p className="error">{errores["nombre"]}</p>}
 
             {/* Campo 2 */}
             <label htmlFor="rut">2. Rut</label>
-            <input type="text" value={rut} onChange={handleRutChange} required />
+            <input ref={refs.rut} type="text" value={rut} onChange={handleRutChange} required />
+            {errores["rut"] && <p className="error">{errores["rut"]}</p>}
 
             {/* Campo 3 */}
             <label htmlFor="edad">3. Edad</label>
-            <input type="text"  placeholder="20" value={edad} onChange={handleEdadChange} required />
+            <input ref={refs.edad} type="text"   min={0} max={99}  placeholder="20" value={edad} onChange={handleEdadChange} required />
+            {errores["edad"] && <p className="error">{errores["edad"]}</p>}
 
             {/* Campo 4 */}
             <label htmlFor="correo">4. Correo institucional</label>
-            <input
-                type="text"
-                placeholder="usuario@utem.cl"  
-                value={correo}
-                onChange={handleCorreoChange}
-            />
-            {errorCorreo && <p style={{ color: "red" }}>{errorCorreo}</p>}
-
+            <input ref={refs.correo} type="text" placeholder="usuario@utem.cl" value={correo} onChange={handleCorreoChange}/>
+            {errores["correo"] && <p className="error">{errores["correo"]}</p>}
 
             {/* Campo 5 */}
             <label>5. Carrera / especialidad</label>
-            <div className="form-field selector-mobile">
+            <div ref={refs.carrera} className="form-field selector-mobile">
             <button type="button" className="selector-btn" onClick={toggleCarrera}>
                 {carrera || "Seleccionar carrera"}
             </button>
@@ -374,10 +495,11 @@ const toggleDisponibilidad = () => setDisponibilidadOpen(!disponibilidadOpen);
             )}
             </div>
             <input type="hidden" name="carrera" value={carrera} required />
+            {errores["carrera"] && <p className="error">{errores["carrera"]}</p>}
 
             {/* Campo 6 */}
             <label>6. Año ingreso</label>
-            <div className="form-field selector-mobile">
+            <div ref={refs.anioIngreso} className="form-field selector-mobile">
             <button type="button" className="selector-btn" onClick={toggleAnioIngreso}>
                 {anioIngreso || "Seleccionar año de ingreso"}
             </button>
@@ -398,10 +520,11 @@ const toggleDisponibilidad = () => setDisponibilidadOpen(!disponibilidadOpen);
             )}
             </div>
             <input type="hidden" name="anioIngreso" value={anioIngreso} required />
+            {errores["anioIngreso"] && <p className="error">{errores["anioIngreso"]}</p>}
 
             {/* Campo 7 */}
             <label>7. Año que cursa actualmente</label>
-            <div className="form-field selector-mobile">
+            <div ref={refs.anioMalla} className="form-field selector-mobile">
             <button type="button" className="selector-btn" onClick={toggleAnioMalla}>
                 {anioMalla || "Seleccionar año que cursa"}
             </button>
@@ -422,10 +545,11 @@ const toggleDisponibilidad = () => setDisponibilidadOpen(!disponibilidadOpen);
             )}
             </div>
             <input type="hidden" name="anioMalla" value={anioMalla} required />
+            {errores["anioMalla"] && <p className="error">{errores["anioMalla"]}</p>}
 
             {/* Campo 8 */}
-            <label>8. ¿En qué áreas te interesa participar o aprender? (máximo 3)</label>
-                <div className="areas-container">
+            <label>8. ¿En qué áreas te interesa participar o aprender?</label>
+                <div ref={refs.areas} className="areas-container">
                 {areas.map((area, i) => {
                     const selected = areasSeleccionadas.includes(area);
                     return (
@@ -441,17 +565,9 @@ const toggleDisponibilidad = () => setDisponibilidadOpen(!disponibilidadOpen);
                 })}
                 </div>
 
-            {otroChecked && (
-            <input
-                type="text"
-                placeholder="Especifica otro"
-                value={otroTexto}
-                onChange={(e) => setOtroTexto(e.target.value)}
-            />
-            )}
+            {otroChecked && ( <input type="text" placeholder="Especifica otro" value={otroTexto} onChange={(e) => setOtroTexto(e.target.value)} />)}
+            {errores["areas"] && <p className="error">{errores["areas"]}</p>}
   
-
-
 
             {/* Campos 9 a 18 */}
             <div>
@@ -461,46 +577,49 @@ const toggleDisponibilidad = () => setDisponibilidadOpen(!disponibilidadOpen);
             <p className="campo-ayuda">
               En caso de que no, ¿te gustaría serlo? Cuéntanos brevemente.
             </p>
-            <textarea id="ayudantia" required></textarea>
+            <textarea ref={refs.ayudantia} id="ayudantia" required></textarea>
           </div>
+          {errores["ayudantia"] && <p className="error">{errores["ayudantia"]}</p>}
 
             <label>10. Horas semanales para el club</label>
-<div className="form-field selector-mobile">
-  <button type="button" className="selector-btn" onClick={toggleDisponibilidad}>
-    {disponibilidad || "Seleccionar cantidad de horas"}
-  </button>
-  {disponibilidadOpen && (
-    <ul className="custom-list">
-      {horasDisponibles.map(h => (
-        <li key={h.id} onClick={() => { selectDisponibilidad(h.nombre); setDisponibilidadOpen(false); }}>
-          {h.nombre}
-        </li>
-      ))}
-    </ul>
-  )}
-</div>
-<input type="hidden" name="disponibilidad" value={disponibilidad} required />
+            <div ref={refs.disponibilidad} className="form-field selector-mobile">
+              <button type="button" className="selector-btn" onClick={toggleDisponibilidad}>
+                {disponibilidad || "Seleccionar cantidad de horas"}
+              </button>
+              {disponibilidadOpen && (
+                <ul className="custom-list">
+                  {horasDisponibles.map(h => (
+                    <li key={h.id} onClick={() => { selectDisponibilidad(h.nombre); setDisponibilidadOpen(false); }}>
+                      {h.nombre}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <input type="hidden" name="disponibilidad" value={disponibilidad} required />
+            {errores["disponibilidad"] && <p className="error">{errores["disponibilidad"]}</p>}
 
-
-                        <div>
+          <div>
             <label htmlFor="unirse">
             11. ¿Por qué quieres unirte?
             </label>
             <p className="campo-ayuda">
               motivaciones, expectativas y lo que más te gustaría lograr con nosotros.
             </p>
-            <textarea id="unirse" required></textarea>
+            <textarea ref={refs.unirse} id="unirse" required></textarea>
           </div>
+          {errores["unirse"] && <p className="error">{errores["unirse"]}</p>}
 
-                        <div>
+             <div>
             <label htmlFor="proyectos">
             12. ¿Tienes algún proyecto en mente, que te gustaría desarrollar en Exdev?
             </label>
             <p className="campo-ayuda">
               Queremos conocer tus ideas, no importa si están en borrador.
             </p>
-            <textarea id="proyectos" required></textarea>
+            <textarea ref={refs.proyectos} id="proyectos" required></textarea>
           </div>
+          {errores["proyectos"] && <p className="error">{errores["proyectos"]}</p>}
 
           <div>
             <label htmlFor="redes">
@@ -509,11 +628,13 @@ const toggleDisponibilidad = () => setDisponibilidadOpen(!disponibilidadOpen);
             <p className="campo-ayuda">
               Github, instagram, behance, etc.
             </p>
-            <textarea id="redes" required></textarea>
+            <textarea ref={refs.redes} id="redes" required></textarea>
           </div>
+          {errores["redes"] && <p className="error">{errores["redes"]}</p>}
 
             <label>14. ¿Te estás postulando con alguien más? Déjanos sus nombres.</label>
-            <textarea id="nombresMas" required></textarea>
+            <textarea ref={refs.nombresMas} id="nombresMas" required></textarea>
+            {errores["nombreMas"] && <p className="error">{errores["nombreMas"]}</p>}
 
             <div>
             <label htmlFor="pitch">
@@ -522,14 +643,17 @@ const toggleDisponibilidad = () => setDisponibilidadOpen(!disponibilidadOpen);
             <p className="campo-ayuda">
               Cuéntanos en menos de 5 líneas quién eres, que te motiva y que te gusta hacer en tu tiempo libre.
             </p>
-            <textarea id="pitch" required></textarea>
+            <textarea ref={refs.pitch} id="pitch" required></textarea>
           </div>
+          {errores["pitch"] && <p className="error">{errores["pitch"]}</p>}
 
             <label>16. Apodo o nombre por el que prefieras ser llamado.</label>
-            <textarea required></textarea>
+            <textarea ref={refs.apodo} id="apodo" required></textarea>
+            {errores["apodo"] && <p className="error">{errores["apodo"]}</p>}
 
             <label>17. Emoji de tu animal favorito (o uno que te represente)</label>
-            <textarea id="emojiAnimal" placeholder="🦊" required></textarea>
+            <textarea ref={refs.emojiAnimal} id="emojiAnimal" placeholder="🦊" required></textarea>
+            {errores["emojiAnimal"] && <p className="error">{errores["emojiAnimal"]}</p>}
 
             <div>
             <label htmlFor="momazo">
@@ -538,8 +662,9 @@ const toggleDisponibilidad = () => setDisponibilidadOpen(!disponibilidadOpen);
             <p className="campo-ayuda">
               Link, imagen o descripción.
             </p>
-            <textarea id="momazo" required></textarea>
+            <textarea ref={refs.momazo} id="momazo" required></textarea>
           </div>
+          {errores["momazo"] && <p className="error">{errores["momazo"]}</p>}
 
             <div>
                   {/* DROP ZONE */}
@@ -623,6 +748,14 @@ const toggleDisponibilidad = () => setDisponibilidadOpen(!disponibilidadOpen);
              </div>
         </section>
       </main>
+
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            selectedMedia={selectedMedia} // GIF o video
+          />
+
+
 
     </>
       );

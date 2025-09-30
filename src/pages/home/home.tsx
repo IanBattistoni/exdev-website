@@ -95,7 +95,7 @@ function Home() {
                     <img src={CharlaExdevIMG} />
                 </div>
                 <div className='project-info'>
-                    <h3>Tallers</h3>
+                    <h3>Talleres</h3>
                     <p>
                         Organizamos sesiones formativas abiertas donde miembros del club comparten conocimientos en áreas como modelado 3D, desarrollo full stack, Flutter, Arduino, entre otros.
                         Aprendemos colaborativamente, creando comunidad técnica dentro y fuera del aula.

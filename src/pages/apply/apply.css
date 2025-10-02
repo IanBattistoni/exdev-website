@@ -1,0 +1,556 @@
+/* ===============================
+   RESET Y ESTILOS GENERALES
+================================= */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+body {
+  color: #eee; /* color por defecto texto */
+  line-height: 1.5;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light {
+  background-color: #f5f5f5;
+  color: #333; /* color por defecto texto en claro */
+}
+
+main.contenido {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ===============================
+   HEADER FORMULARIO
+================================= */
+.form-header h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #eee;
+}
+
+body.light .form-header h2 {
+  color: #333;
+}
+
+p {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  color: #aaa;
+}
+
+body.light p {
+  color: #555;
+}
+
+/* ===============================
+   UNIFICAR COLORES DE TÍTULOS Y PÁRRAFOS
+================================= */
+.form-header h2,
+.questions h2,
+.questions h3,
+.questions__paragraph {
+  color: #aaa; /* modo oscuro */
+}
+
+body.light .form-header h2,
+body.light .questions h2,
+body.light .questions h3,
+body.light .questions__paragraph {
+  color: #555; /* modo claro */
+}
+
+/* ===============================
+   TITULOS Y PÁRRAFOS
+================================= */
+/* Encabezados del formulario y otros títulos importantes */
+.form-header h2,
+.questions__paragraph {
+  color: #aaa; /* modo oscuro */
+  margin-bottom: 1rem;
+}
+
+body.light .form-header h2,
+body.light .questions__paragraph {
+  color: #555; /* modo claro */
+}
+
+/* Párrafos generales */
+p {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  color: inherit; /* hereda el color del body */
+}
+
+/* ===============================
+   CENTRADO DE HEADER Y QUESTIONS
+================================= */
+.form-header,
+.questions {
+  text-align: center; /* centra todo dentro del bloque */
+  margin-bottom: 1.5rem; /* separa del siguiente contenido */
+}
+
+.form-header h2,
+.questions h2 {
+  margin-bottom: 0.5rem; /* espacio entre título y párrafo */
+}
+
+.form-header p,
+.questions p {
+  margin: 0; /* elimina margen extra del párrafo */
+}
+
+.questions__paragraph {
+  margin-bottom: 2rem; /* espacio entre párrafo y preguntas */
+}
+
+.questions__container {
+  margin-top: 1rem; /* separa el bloque de preguntas del título/párrafo */
+}
+
+/* ===============================
+   FORMULARIO EN CUADRO
+================================= */
+.formulario-card {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.form-card {
+  background-color: #1e1e1e; /* fondo oscuro */
+  color: inherit; /* hereda color de body */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 800px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light .form-card {
+  background-color: #fff;
+  color: inherit;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ===============================
+   INPUTS Y TEXTAREA
+================================= */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  margin: 0.4rem 0 1.2rem 0;
+  border: 1px solid #444;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #1e1e1e;
+  color: #eee;
+  transition: all 0.3s;
+  resize: none;
+}
+
+body.light input[type="text"],
+body.light textarea {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #8e44ad;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+}
+
+.campo-ayuda {
+  font-style: italic;      /* cursiva */
+  margin-top: 2px;         /* para que esté pegado al label */
+  margin-bottom: 6px;      /* un pequeño espacio antes del input */
+}
+
+
+
+/* ===============================
+   BOTONES
+================================= */
+/* Solo botón enviar */
+.btn-enviar {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin: 1rem auto 0 auto; /* top auto bottom auto left/right auto */
+  display: block;
+}
+
+body.light .btn-enviar:hover {
+  background-color: #1d4ed8; /* azul oscuro */
+}
+
+/* Botones genéricos, como selector-btn */
+button.selector-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  color: #333;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+button.selector-btn:hover {
+  background-color: #eee; /* color de hover distinto */
+}
+
+/* Modo claro */
+body.light .btn-enviar {
+  background-color: #179edd;
+  color: white;
+}
+
+/* Botón enviar en modo oscuro */
+body:not(.light) .btn-enviar {
+  background-color: #7c3aed; /* morado */
+}
+
+body:not(.light) .btn-enviar:hover {
+  background-color: #6d28d9; /* morado más oscuro */
+}
+
+body.light button.selector-btn {
+  background-color: #fff;
+  color: #333;
+}
+
+body:not(.light) button.selector-btn {
+  background-color: #1e1e1e;
+  color: #eee;
+  border: 1px solid #444;
+}
+
+/* Botón Seleccionar meme - Modo oscuro */
+.btn-meme {
+  background-color: #444;
+  color: #eee;
+  border: 1px solid #666;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.btn-meme:hover {
+  background-color: #555;
+}
+
+/* Botón Seleccionar meme - Modo claro */
+body.light .btn-meme {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+body.light .btn-meme:hover {
+  background-color: #e5e5e5;
+}
+
+/* ===============================
+   SELECTORES PERSONALIZADOS
+================================= */
+.custom-list {
+  list-style: none;
+  border: 1px solid #444;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #1e1e1e;
+  padding: 0.5rem;
+  transition: all 0.3s;
+}
+
+/* Modo claro */
+body.light .custom-list {
+  background-color: #fff; /* blanco */
+  border: 1px solid #ccc;
+}
+
+/* Modo oscuro (body no tiene .light) */
+body:not(.light) .custom-list {
+  background-color: #1f1f1f; /* gris oscuro */
+  border: 1px solid #555;
+}
+
+/* Estilo común a ambas */
+.custom-list li {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Modo claro */
+body.light .custom-list li:not(:has(ul)):hover {
+  background-color: #179edd; /* azul suave */
+}
+
+/* Modo oscuro */
+body:not(.light) .custom-list li:not(:has(ul)):hover {
+  background-color: #7c3aed; 
+}
+
+.custom-list strong {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+/* ===============================
+   ÁREAS DE INTERÉS (CHIPS)
+================================= */
+/* Contenedor vertical */
+.areas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Cada opción */
+.area-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Ocultar checkbox real */
+.area-chip input[type="checkbox"] {
+  display: none;
+}
+
+/* Cuadradro al lado del texto (base sin color) */
+.area-chip::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 7px;
+  background-color: transparent;
+  flex-shrink: 0;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Modo claro: borde y relleno celeste */
+body.light .area-chip::before {
+  border: 2px solid #179edd;
+}
+body.light .area-chip.selected::before {
+  background-color: #179edd;
+  border-color: #179edd;
+}
+
+
+/* Modo oscuro (body no tiene .light) */
+body:not(.light) .area-chip::before {
+  border: 2px solid #7c3aed; /* morado */
+}
+body:not(.light) .area-chip.selected::before {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+}
+
+/* Texto normal */
+.chip-text {
+  font-size: 0.95rem;
+  color: inherit;
+}
+
+
+/* ===============================
+   DROPZONE / SUBIDA DE ARCHIVOS
+================================= */
+.drop-zone {
+  border: 2px dashed #444;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  margin: 1rem 0;
+  cursor: pointer;
+  background-color: #1e1e1e;
+  color: #eee;
+  transition: all 0.3s;
+}
+
+.drop-zone:hover {
+  background-color: #333;
+}
+
+body.light .drop-zone {
+  background-color: #f0f5ff;
+  border: 2px dashed #1d4ed8;
+  color: #333;
+}
+
+body.light .drop-zone:hover {
+  background-color: #e0e7ff;
+}
+
+.preview-files {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+
+/* ===============================
+   PREGUNTAS FRECUENTES (ACCORDION)
+================================= */
+
+/* Variables de colores para modo light y dark */
+:root {
+  --faq-text-light: #444;
+  --faq-text-dark: #ccc;
+  --arrow-light: #000;
+  --arrow-dark: #fff;
+  --border-color-light: #ccc;
+  --border-color-dark: #666;
+  --faq-background-light: #fff;
+}
+
+/* Contenedor */
+.questions {
+  margin-top: 3rem;
+  background-color: var(--faq-background-light);
+}
+
+body:not(.light) .questions {
+  background-color: var(--faq-background-dark);
+}
+
+.questions__paragraph {
+  margin-bottom: 1rem;
+  color: var(--faq-text-dark);
+}
+
+body.light .questions__paragraph {
+  color: var(--faq-text-light);
+}
+
+/* Cada pregunta */
+.question {
+  border-bottom: 1px solid var(--border-color-dark);
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+body.light .question {
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+/* Header de la pregunta */
+.question__header {
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.4;
+  color: inherit;
+    display: flex;
+  justify-content: space-between; /* separa texto y flecha */
+  align-items: center;            /* centra verticalmente la flecha con el texto */
+  cursor: pointer;
+}
+
+/* Flecha */
+.arrow-icon {
+  fill: var(--arrow-dark);
+  transition: transform 0.3s ease, fill 0.3s ease;
+  cursor: pointer;
+}
+
+body.light .arrow-icon {
+  fill: var(--arrow-light);
+}
+
+.arrow-icon.open {
+  transform: rotate(90deg);
+}
+
+/* Contenido de la pregunta */
+.question__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease, color 0.3s;
+  padding: 0 0.5rem;
+  color: var(--faq-text-dark);
+}
+
+body.light .question__content {
+  color: var(--faq-text-light);
+}
+
+/* Cuando está abierta */
+.question.open .question__content {
+  max-height: 999px; /* suficiente para respuestas largas */
+  padding: 0.5rem 0.5rem;
+}
+
+/* Párrafos dentro del contenido */
+.question__content p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+
+
+
+/* ===============================
+   MENSAJE DE ERROR
+================================= */
+p[style*="color: red"] {
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+@media (max-width: 600px) {
+  main.contenido {
+    padding: 1rem;
+  }
+
+  .selector-btn {
+    font-size: 0.95rem;
+  }
+}
+
+/* ERROR MENSAJE*/
+body.light .error,
+body:not(.light) .error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}

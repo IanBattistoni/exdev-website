@@ -11,9 +11,9 @@ export const postularUsuario = async (data:any) => {
     });
 
     const result = await response.json();
-    console.log('✅ Respuesta del servidor:', result);
+    console.log('Respuesta del servidor:', result);
     return result;
   } catch (error) {
-    console.error('❌ Error al postular:', error);
+    console.error('Error al postular:', error);
   }
 };

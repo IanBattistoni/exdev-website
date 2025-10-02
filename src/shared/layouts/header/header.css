@@ -1,0 +1,125 @@
+.header {
+  height: 70px;
+  padding: 10px;
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo-container {
+  padding-left: 4rem;
+}
+.exdev-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* Navegación */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4vw;
+  padding-right: 4rem;
+}
+.nav a {
+  position: relative;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  padding: 0.5rem 0;
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+.nav a:hover::after {
+  width: 100%; /* subraya al hover */
+}
+
+/* Modo claro */
+body.light .nav a {
+  color: #490379;
+}
+body.light .nav a::after {
+  background-color: #490379;
+}
+
+/* Botón de tema */
+.theme-switch {
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 60px;
+  height: 28px;
+  padding: 0 6px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: url("/src/assets/img/moon_night.webp") center/cover no-repeat;
+  transition: background-color 0.3s ease;
+}
+body.light .theme-switch {
+  background-image: url("/src/assets/img/sun_light.webp");
+  border: 1px solid rgba(0, 0, 0, 0.37);
+}
+.theme-switch .switch-thumb {
+  position: absolute;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #ddd;
+  transition: transform 0.3s ease;
+}
+.theme-switch .switch-thumb.active {
+  transform: translateX(32px);
+}
+body.light .theme-switch .switch-thumb {
+  background-color: #f1e98e;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .logo-container {
+    padding-left: 2rem;
+  }
+  .nav {
+    padding-right: 2rem;
+  }
+}
+@media (max-width: 320px) {
+  .logo-container {
+    padding-left: 1rem;
+  }
+  .nav {
+    padding-right: 1rem;
+  }
+}
+
+/* Desktop vs Mobile */
+.desktop-nav {
+  display: flex;
+  gap: 20px;
+}
+.mobile-nav {
+  display: none;
+}
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  .mobile-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,351 @@
+/* =====================
+   VARIABLES GLOBALES
+===================== */
+
+
+body {
+  --accent: #fff;
+  --accent-2: #b084f5;
+  --text: #e3e3f7;
+  --subtext: #ccc;
+  --card: rgba(11,10,30,0.6);
+  --card-shadow: rgba(0,0,0,0.7);
+  --timeline-bg: rgba(11,10,30,0.6);
+}
+
+body.light {
+  --accent: #65428A;
+  --accent-2: #65428A;
+  --text: #1a1a1a;
+  --subtext: #444;
+  --card: #ffffff;
+  --card-shadow: rgba(0,0,0,0.1);
+  --timeline-bg: rgba(255,255,255,0.06);
+}
+
+/* =====================
+   HERO
+===================== */
+.hero-title {
+  font-size: 2.6rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--accent);
+}
+
+.hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--text);
+  margin-top: 1rem;
+}
+
+/* =====================
+   SUMMARY - two cards
+===================== */
+.summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 1.6rem;
+  box-shadow: 0 6px 18px var(--card-shadow);
+  border: 1px solid rgba(176,132,245,0.06);
+  transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.card h2 {
+  color: var(--accent);
+  margin-top: 0;
+}
+
+.card p {
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* =====================
+   HOW WE WORK list
+===================== */
+.how-we-work ol {
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.how-we-work li {
+  margin: 0.6rem 0;
+  color: var(--text);
+}
+
+/* =====================
+   CULTURE
+===================== */
+.culture {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 1rem;
+}
+
+.value-card {
+  background: var(--card);
+  padding: 1.2rem;
+  border-radius: 10px;
+  border: 1px solid rgba(124,212,247,0.04);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.3s, color 0.3s;
+  box-shadow: 0 6px 18px var(--card-shadow);
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px var(--card-shadow);
+}
+
+
+
+.value-card h3 {
+  color: var(--text);
+  margin: 0.2rem 0 0.4rem 0;
+}
+
+.culture-intro {
+  max-width: 800px;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  color: var(--text);
+  text-align: center;
+}
+
+/* =====================
+   TIMELINE
+===================== */
+.history {
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.milestone {
+  display: flex-start;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.milestone.left {
+  flex-direction: row;
+}
+
+.milestone.right {
+  flex-direction: row-reverse;
+}
+
+
+
+.milestone-content {
+  background: var(--timeline-bg);
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(124,212,247,0.04);
+  color: var(--text);
+}
+
+
+/* Mantener estilo “dark” en una card de la historia aunque el body sea light */
+body.light .milestone-content {
+  background: #ffffff;   /* fondo dark */
+  border: 1px solid rgba(11, 170, 233, 0.04); /* borde sutil */
+  color: #000000; /* texto claro */
+    transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.3s, color 0.3s;
+  box-shadow: 0 6px 18px var(--card-shadow);
+}
+
+.year {
+  display: block;
+  font-weight: 600;
+  color: var(--accent-2);
+  margin-bottom: 0.4rem;
+}
+
+/* =====================
+   CTA
+===================== */
+.cta {
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.cta-card {
+  background: linear-gradient(180deg, rgba(175, 132, 245, 0.466), rgba(124, 212, 247, 0.466));
+  padding: 1.6rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+body.light .cta-card {
+  background: linear-gradient(180deg, rgba(175, 132, 245, 0.315), rgba(124, 212, 247, 0.315));
+  padding: 1.6rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+
+
+
+
+.cta-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+
+
+
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 900px) {
+  .summary {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  .hero-title {
+    font-size: 2rem;
+  }
+  .timeline {
+    padding: 1rem 0;
+  }
+}
+
+/* =====================
+   ACCESIBILITY
+===================== */
+button:focus {
+  outline: 2px solid rgba(124,212,247,0.25);
+  outline-offset: 2px;
+}
+
+/* TIMELINE CARD IMAGES */
+.timeline-card-img {
+  display: block;
+  margin-bottom: 16px;
+  object-fit: contain;
+}
+
+.timeline-card-img.rectangular {
+  width: 120px;
+  height: 80px;
+  border-radius: 8px;
+}
+
+.timeline-card-img.square {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+}
+
+
+/* TITLE HSTORY*/
+.milestone-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0.3rem 0;
+  color: #fff;
+
+}
+
+body.light .milestone-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0.3rem 0;
+  color: #000000;
+}
+
+
+/* Botones generales */
+.btn {
+  padding: 0.75rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Primary - modo claro */
+.btn.primary {
+  background-color: var(--accent); 
+  color: #1a0b1f;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Hover primary modo claro */
+.btn.primary:hover {
+  background-color: #bebebe;
+  color: #0c0c0c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+}
+
+/* Modo dark */
+body.light .btn.primary {
+  background-color: #1a0b1f; /* fondo morado oscuro */
+  color: #fff; /* texto morado claro */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+body.light .btn.primary:hover {
+  background-color: #A275FF; /* hover morado claro */
+  color: #fff; /* texto oscuro para contraste */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.7);
+}
+
+/* Secondary - modo dark */
+body.light .btn.secondary {
+  background-color: transparent;
+  color: #A275FF;
+  border: 1px solid #A275FF;
+}
+
+body.light .btn.secondary:hover {
+  background-color: #A275FF;
+  color: #1a0b1f;
+  transform: translateY(-2px);
+}
+

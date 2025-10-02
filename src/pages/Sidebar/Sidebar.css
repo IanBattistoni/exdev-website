@@ -1,0 +1,111 @@
+/* Botón menú + switch en el header móvil */
+.mobile-controls {
+  display: none;
+  align-items: center;
+  gap: 12px;
+}
+@media (max-width: 768px) {
+  .mobile-controls { display: flex; flex-direction: row-reverse; /* 👈 invierte el orden */ }
+}
+
+/* Botón hamburguesa */
+.menu-icon {
+  border: 0;
+  background: transparent;
+  padding: 6px;
+  cursor: pointer;
+  color: lightgray;
+  z-index: 1200;
+}
+.menu-icon-svg { display: block; }
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 80%;
+  max-width: 360px;
+  background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: -2px 0 20px rgba(0,0,0,0.4);
+  z-index: 1400;
+
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 300ms ease, opacity 300ms ease;
+
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+.sidebar.open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+@media (min-width: 769px) {
+  .sidebar { display: none !important; }
+}
+
+/* Botón de cerrar */
+.close-icon {
+  align-self: flex-end;
+  border: 0;
+  background: transparent;
+  color: lightgray;
+  padding: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Links */
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-nav li { margin: 14px 0; }
+.sidebar-nav a {
+  text-decoration: none;
+  color: lightgray;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 6px;
+  display: block;
+}
+.sidebar-nav a:hover { background: rgba(140,90,255,0.2); }
+
+/* Redes sociales al fondo */
+.sidebar-socials {
+  margin-top: auto;
+  display: flex;
+  gap: 18px;
+  padding-top: 20px;
+}
+.sidebar-socials img {
+  width: 28px;
+  height: 28px;
+  filter: invert(1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.sidebar-socials img:hover {
+  transform: scale(1.1);
+}
+
+/* Overlay detrás del sidebar */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* semitransparente */
+  z-index: 998; /* justo debajo del sidebar */
+}
+
+

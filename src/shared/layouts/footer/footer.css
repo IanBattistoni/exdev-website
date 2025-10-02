@@ -1,0 +1,204 @@
+body.light .footer {
+  background-color: #dddddd;
+  color: #3A86FF;
+  padding: 2rem 1rem 1rem;
+  font-family: Arial, sans-serif;
+}
+
+ .footer {
+  background-color: #283646;
+  color: #CFD3D7;
+  padding: 2rem 1rem 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-logo img {
+  width: 35px;
+  height: auto;
+  filter: none !important;
+  color: initial !important;
+}
+
+
+body.light .footer-description {
+  font-size: 0.95rem;        /* un poco más grande que la universidad */
+  margin-bottom: 0.3rem;     /* margen más pequeño para cercanía con la universidad */
+  color: #4a4a4a;            /* color gris oscuro, mejor contraste en fondo claro */
+  line-height: 1.4;          /* mejor legibilidad */
+}
+
+
+
+
+.footer-description {
+  font-size: 0.95rem;        /* un poco más grande que la universidad */
+  margin-bottom: 0.3rem;     /* margen más pequeño para cercanía con la universidad */
+  color: #CFD3D7;            /* color gris oscuro, mejor contraste en fondo claro */
+  line-height: 1.4;          /* mejor legibilidad */
+}
+
+
+
+body.light .footer-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #3A86FF;
+}
+
+.footer-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #a63aff; 
+}
+
+
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section li {
+  margin-bottom: 0.3rem;
+}
+
+.footer-section a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+
+.social-links {
+  display: flex;
+  gap: 0.8rem; /* espacio entre iconos */
+  align-items: center;
+}
+
+body.light .social-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;   
+  height: 40px;
+  background-color: #007bff; /* azul de fondo */
+  border-radius: 50%;         /* círculo */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+body.light .social-icon-wrapper:hover {
+  transform: scale(1.2);
+  background-color: #0056b3; /* azul más oscuro en hover */
+}
+
+.social-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;   
+  height: 40px;
+  background-color: #8d33d6; /* azul de fondo */
+  border-radius: 50%;         /* círculo */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-icon-wrapper:hover {
+  transform: scale(1.2);
+  background-color: #a63aff; /* azul más oscuro en hover */
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  fill: #fff; /* color del SVG */
+  transition: fill 0.3s ease;
+}
+
+
+
+body.light .footer-bottom {
+  border-top: 1px solid #76AEFF;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #aaa;
+  padding-top: 0.8rem;
+  margin-top: 1rem; 
+}
+
+.footer-bottom {
+  border-top: 1px solid #a63aff;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #aaa;
+  padding-top: 0.8rem;
+  margin-top: 1rem; 
+}
+
+
+
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #CFD3D7;
+}
+
+body.light .contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #5f666d;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* espacio entre ícono y texto */
+  margin-bottom: 0.6rem;
+
+}
+
+body.light .contact-item .icon {
+  width: 20px;
+  height: 20px;
+  color: #3A86FF; /* blanco para footer oscuro */
+}
+
+.contact-item .icon {
+  width: 20px;
+  height: 20px;
+  color: #a63aff; /* blanco para footer oscuro */
+}
+
+.logo-svg {
+  width: 150px;
+  height: auto; /* mantiene la proporción */
+}
+
+/* Estilo por defecto (modo claro) */
+body.light .footer-logo {
+  color: black; /* todo negro */
+}
+
+/* Modo oscuro */
+.footer-logo {
+  color: white; /* todo blanco */
+}
+
+
+

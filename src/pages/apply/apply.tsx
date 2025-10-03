@@ -17,6 +17,11 @@ const preguntas = [
   },
 ];
 
+function sanitizeTextInput(value: string): string {
+  return value.replace(/[^\p{L}\p{N}\p{P}\p{Zs}\n]/gu, '');
+}
+
+
 function Apply() {
 
   const refs = {
@@ -258,8 +263,8 @@ if (!correo.trim()) {
   if (!disponibilidad) nuevosErrores["disponibilidad"] = "Debes seleccionar tu disponibilidad";
 
   // Áreas: exactamente 3
-  if (areasSeleccionadas.length !== 3) 
-    nuevosErrores["areas"] = "Debes seleccionar exactamente 3 áreas";
+  if (areasSeleccionadas.length === 0) 
+    nuevosErrores["areas"] = "Debes seleccionar al menos 1 área";
 
   // Textareas
   const textareas = ["ayudantia", "unirse", "proyectos", "redes", "nombresMas", "pitch"];
@@ -636,7 +641,15 @@ useEffect(() => {
             <p className="campo-ayuda">
               En caso de que no, ¿te gustaría serlo? Cuéntanos brevemente.
             </p>
-            <textarea ref={refs.ayudantia} id="ayudantia" required></textarea>
+            <textarea 
+                ref={refs.ayudantia} 
+                id="ayudantia" 
+                required
+                onInput={(e) => {
+                    const target = e.target as HTMLTextAreaElement;
+                    target.value = sanitizeTextInput(target.value);
+                }}
+                ></textarea>
           </div>
           {errores["ayudantia"] && <p className="error">{errores["ayudantia"]}</p>}
 
@@ -665,7 +678,15 @@ useEffect(() => {
             <p className="campo-ayuda">
               motivaciones, expectativas y lo que más te gustaría lograr con nosotros.
             </p>
-            <textarea ref={refs.unirse} id="unirse" required></textarea>
+            <textarea 
+                ref={refs.unirse} 
+                id="unirse" 
+                required
+                onInput={(e) => {
+                    const target = e.target as HTMLTextAreaElement;
+                    target.value = sanitizeTextInput(target.value);
+                }}
+                ></textarea>
           </div>
           {errores["unirse"] && <p className="error">{errores["unirse"]}</p>}
 
@@ -676,7 +697,15 @@ useEffect(() => {
             <p className="campo-ayuda">
               Queremos conocer tus ideas, no importa si están en borrador.
             </p>
-            <textarea ref={refs.proyectos} id="proyectos" required></textarea>
+            <textarea 
+                ref={refs.proyectos} 
+                id="proyectos" 
+                required
+                onInput={(e) => {
+                    const target = e.target as HTMLTextAreaElement;
+                    target.value = sanitizeTextInput(target.value);
+                }}
+                ></textarea>
           </div>
           {errores["proyectos"] && <p className="error">{errores["proyectos"]}</p>}
 
@@ -687,12 +716,28 @@ useEffect(() => {
             <p className="campo-ayuda">
               Github, instagram, behance, etc.
             </p>
-            <textarea ref={refs.redes} id="redes" required></textarea>
+            <textarea 
+                ref={refs.redes} 
+                id="redes" 
+                required
+                onInput={(e) => {
+                    const target = e.target as HTMLTextAreaElement;
+                    target.value = sanitizeTextInput(target.value);
+                }}
+                ></textarea>
           </div>
           {errores["redes"] && <p className="error">{errores["redes"]}</p>}
 
             <label>14. ¿Te estás postulando con alguien más? Déjanos sus nombres.</label>
-            <textarea ref={refs.nombresMas} id="nombresMas" required></textarea>
+            <textarea 
+                ref={refs.nombresMas} 
+                id="nombresMas" 
+                required
+                onInput={(e) => {
+                    const target = e.target as HTMLTextAreaElement;
+                    target.value = sanitizeTextInput(target.value);
+                }}
+                ></textarea>
             {errores["nombreMas"] && <p className="error">{errores["nombreMas"]}</p>}
 
             <div>
@@ -702,12 +747,28 @@ useEffect(() => {
             <p className="campo-ayuda">
               Cuéntanos en menos de 5 líneas quién eres, que te motiva y que te gusta hacer en tu tiempo libre.
             </p>
-            <textarea ref={refs.pitch} id="pitch" required></textarea>
+            <textarea 
+                ref={refs.pitch} 
+                id="pitch" 
+                required
+                onInput={(e) => {
+                    const target = e.target as HTMLTextAreaElement;
+                    target.value = sanitizeTextInput(target.value);
+                }}
+                ></textarea>
           </div>
           {errores["pitch"] && <p className="error">{errores["pitch"]}</p>}
 
             <label>16. Apodo o nombre por el que prefieras ser llamado.</label>
-            <textarea ref={refs.apodo} id="apodo" required></textarea>
+            <textarea 
+                ref={refs.apodo} 
+                id="apodo" 
+                required
+                onInput={(e) => {
+                    const target = e.target as HTMLTextAreaElement;
+                    target.value = sanitizeTextInput(target.value);
+                }}
+                ></textarea>
             {errores["apodo"] && <p className="error">{errores["apodo"]}</p>}
             {/*
             <label>17. Emoji de tu animal favorito (o uno que te represente)</label>

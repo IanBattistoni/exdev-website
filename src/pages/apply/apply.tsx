@@ -288,11 +288,7 @@ try{
       rut: (document.getElementById("rut") as HTMLInputElement)?.value.replace(/\./g, "") || "",
       edad: Number(edad),
       correo_institucional: correo,
-      campus: carrera.includes("Ñuñoa")
-        ? "Campus Ñuñoa"
-        : carrera.includes("Central")
-        ? "Campus Central"
-        : "Campus Providencia",
+      campus: obtenerCampusDesdeCarrera(carrera),
       carrera,
       anio_ingreso: Number(anioIngreso),
       anio_actual: Number(anioMalla),
@@ -308,7 +304,6 @@ try{
       pitch: (document.getElementById("pitch") as HTMLTextAreaElement)?.value || "",
       apodo: (document.getElementById("apodo") as HTMLTextAreaElement)?.value || ""
     };
-
     const result = await postularUsuario(datos);
 
     if (result?.responseCode === "I001") {
@@ -494,6 +489,14 @@ useEffect(() => {
   }
 }, [isModalOpen]);
 
+const obtenerCampusDesdeCarrera = (nombreCarrera: string): string => {
+  for (const [campus, lista] of Object.entries(carreras)) {
+    if (lista.some(c => c.nombre === nombreCarrera)) {
+      return campus;
+    }
+  }
+  return "Campus desconocido";
+};
 
 
   return (

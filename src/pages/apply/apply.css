@@ -494,7 +494,7 @@ body.light .arrow-icon {
 }
 
 .arrow-icon.open {
-  transform: rotate(90deg);
+  transform: rotate(180deg);
 }
 
 /* Contenido de la pregunta */
@@ -504,6 +504,7 @@ body.light .arrow-icon {
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease, color 0.3s;
   padding: 0 0.5rem;
   color: var(--faq-text-dark);
+  text-align: left;
 }
 
 body.light .question__content {
